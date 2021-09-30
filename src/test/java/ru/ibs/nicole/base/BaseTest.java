@@ -19,8 +19,8 @@ public class BaseTest {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-        wait = new WebDriverWait(driver, 10, 1000);
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        wait = new WebDriverWait(driver, 15, 1000);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         String baseUrl = "https://www.rgs.ru/";
         driver.get(baseUrl);
@@ -68,9 +68,7 @@ public class BaseTest {
             WebElement close = driver.findElement(by);
             new Actions(driver).moveToElement(close).click().build().perform();
             driver.switchTo().defaultContent();
-        } catch (NoSuchElementException ignore) {
-
-        } catch (TimeoutException ignore) {
+        } catch (NoSuchElementException | TimeoutException ignore) {
 
         } finally {
             driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
